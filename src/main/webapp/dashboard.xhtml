@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+		<title>DashBoard</title>
+	</h:head>
+	
+	<h:body>
+	<div style="background-color:#487eb0">
+	<p:panel menuTitle="Manager App" toggleable="true" toggleSpeed="600"
+		header="Employee Manager" style="font-size:28px;  font-family:impact">
+		<p:outputLabel style="font-size:20px; font-weight:bold; color:#487eb0">
+		Welcome, #{firstName} #{lastName}..!</p:outputLabel>
+	</p:panel>	
+	<p:tabMenu style="font-family:impact">
+			<p:menuitem value="Home" outcome="dashboard.xhtml"/>
+			<p:menuitem value="Employee Directory" outcome="employee-directory.xhtml"></p:menuitem>
+	</p:tabMenu>
+	
+	<p:panel>
+		<p:outputLabel>Your Details</p:outputLabel>
+	</p:panel>
+		
+            <p:outputPanel style="color:white">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Employee Id:" />
+                    <h:outputText value="#{id}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="First Name:" />
+                    <h:outputText value="#{firstName}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Last Name:" />
+                    <h:outputText value="#{lastName}" style="font-weight: bold"/>
+                    
+                    <h:outputText value="User Name:" />
+                    <h:outputText value="#{userName}" style="font-weight: bold"/>
+                    
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:panel>
+  		<h:form>
+  			<p:commandButton value="Logout" action="#{loginBean.logout()}"></p:commandButton>
+  		</h:form>
+
+  	</p:panel>
+  	</div>
+	</h:body>
+
+</html>

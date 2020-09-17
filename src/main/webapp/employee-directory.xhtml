@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Employee Directory</title>
+</h:head>
+<h:body>
+
+	<p:panel header="Employee Manager" style="font-size:28px;  font-family:impact"></p:panel>
+	
+	<p:tabMenu style="background-color:#3c6382; font-family:impact">
+			<p:menuitem value="Employee Directory" outcome="employee-directory.xhtml" icon="pi pi-users"/>
+			<p:menuitem value="Home" outcome="dashboard.xhtml"/>
+	</p:tabMenu>
+	<h:form>
+		<p:panel header="Employee Record" style="background-color:#487eb0">
+			<p:dataTable var="user" value="#{restBean.userDirectory}">
+				<p:column>
+					<f:facet name="header">SR.No</f:facet>
+					<p:outputLabel value="#{user.id}"></p:outputLabel>
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">Employee ID</f:facet>
+					<p:outputLabel value="#{user.userId}"></p:outputLabel>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">First Name</f:facet>
+					<p:outputLabel value="#{user.firstName}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Last Name</f:facet>
+					<p:outputLabel value="#{user.lastName}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Username</f:facet>
+					<p:outputLabel value="#{user.username}"></p:outputLabel>
+				</p:column>
+				<p:column style="background-color:#4b4b4b">
+					<f:facet name="header">Action</f:facet>
+					<p:commandButton value="Add Asset" action="#{restBean.saveSelectedId(user.id)}"></p:commandButton>
+				</p:column>
+				<f:facet name="footer">	
+				</f:facet>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+	<p:panel>
+  		<h:form>
+  		</h:form>
+  	</p:panel>
+</h:body>
+</html>

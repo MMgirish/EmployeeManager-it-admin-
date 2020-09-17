@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Assets</title>
+	
+</h:head>
+
+<h:body>
+	<p:panel header="Employee Manager" style="font-size:28px;  font-family:impact; background-color:"></p:panel>
+	
+	<p:tabMenu style="background-color:#3c6382; font-family:impact">
+			<p:menuitem value="Assets" outcome="assets.xhtml"></p:menuitem>
+			<p:menuitem value="Home" outcome="dashboard.xhtml"/>		
+	</p:tabMenu>
+	<div>
+	<h:form>
+		<p:dataScroller value="#{assetBean.getOneUser()}" var="user" chunkSize="10">
+			<f:facet name="header">
+            User information
+        </f:facet>
+
+			<h:panelGrid columns="1" style="width:100%; background-color:#EAF0F1; font-family:tahoma">
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5" style="background-color:#778ca3">
+						<h:outputText value="Employee ID:" />
+						<h:outputText value="#{user.id}" style="font-weight: bold" />
+						<h:outputText value="Assets Assigned:" />
+						<p:button value="Add Assets" outcome="add-to-assets.xhtml" style="width:200px; height:40px"/>
+						<!-- Inner data scroller -->
+						<p:dataScroller value="#{user.assets}" var="a" chunkSize="10">
+
+							<h:panelGrid columns="2" style="width:100%">
+								<p:outputPanel>
+									<h:panelGrid columns="2" cellpadding="5">
+										<h:outputText value="Asset ID:" />
+										<h:outputText value="#{a.assetId}" style="font-weight: bold" />
+										
+										<h:outputText value="Asset Name:" />
+										<h:outputText value="#{a.assetName}" style="font-weight: bold" />
+										
+										<h:outputText value="Asset Type:" />
+										<h:outputText value="#{a.assetType}" style="font-weight: bold" />
+										
+										<h:outputText value="Asset Description:" />
+										<h:outputText value="#{a.assetDescription}" style="font-weight: bold" />
+										
+										<h:outputText value="Assigned By:" />
+										<h:outputText value="#{a.assignedBy}" style="font-weight: bold" />
+										
+										<h:commandButton value="Remove" action="#{assetBean.removeAsset(a)}"></h:commandButton>
+										<br></br>
+										<hr width="400px"></hr>
+									</h:panelGrid>
+								</p:outputPanel>
+							</h:panelGrid>
+						</p:dataScroller>
+						<!-- End of inner data scroller -->
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+
+		</p:dataScroller>
+	</h:form>
+	</div>
+</h:body>
+
+</html>
